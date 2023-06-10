@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 
 
-const pages = ['Legal', 'Pricing', 'Blog'];
+const pages = ['Legal', 'Growth', 'Report'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {

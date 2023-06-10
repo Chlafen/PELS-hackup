@@ -11,6 +11,8 @@ import useAuth from './hooks/useAuth';
 import { useEffect, useState } from 'react';
 import AuthService from './services/AuthService';
 import Legal from './pages/Legal';
+import Growth from './pages/Growth';
+import Report from './pages/Report';
 
 
 function App() {
@@ -49,6 +51,8 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         {/* <Route exact path="/logout" element={<Login />} /> */}
         <Route exact path="/legal" element={<Legal />} />
+        <Route exact path="/growth" element={<Growth />} />
+        <Route exact path="/report" element={<Report />} />
         
         <Route path="*" element={<NotFound />} />
 
