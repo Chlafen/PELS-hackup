@@ -5,26 +5,34 @@ import { UserModule } from './user/user.module';
 import {DataSource} from "typeorm";
 import {AuthentificationMiddleware} from "./middlewares/authentification/authentification.middleware";
 import { OffreModule } from './offre/offre.module';
-import {TypeOrmModule} from "@nestjs/typeorm";
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { EmployerModule } from './employer/employer.module';
+import { LegalController } from './legal/legal.controller';
+import { LegalModule } from './legal/legal.module';
+import { OffreEntity } from './offre/entities/offre.entity';
+import { LegalService } from './legal/legal.service';
+import { LegalEntity } from './legal/entities/legal.entity';
+import { EmployerEntity } from './employer/entities/employer.entity';
 
 @Module({
-  imports: [UserModule,
-      OffreModule,
-    TypeOrmModule.forRoot(
-        {
-          type: 'mysql',
-          host: 'localhost',
-          port: 3306,
-          username: 'root',
-          password: '',
-          database: 'pels-hackup',
-          autoLoadEntities: true,
-          synchronize: true,
-          logging: true,
-        }
-    ),
+  imports: [OffreModule,
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
+        type: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: '',
+        database: 'pels-hackup',
+        entities: [OffreEntity,LegalEntity,EmployerEntity],
+        synchronize: true,
+      }),
+      inject: [],
+    }),
+    EmployerModule,
+    LegalModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, LegalController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
