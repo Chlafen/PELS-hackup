@@ -28,7 +28,7 @@ export class User {
         length: 8,
         nullable: false
     })
-    phoneNumber: number;
+    phoneNumber: string;
 
     @Column({
         nullable: false
@@ -57,13 +57,12 @@ export class User {
     @Column({
         type: 'enum',
         enum: Skill,
-        array: true,
     })
-    skills: Skill[];
+    skill: Skill;
 
     @Column({
         length: 50, nullable: false
     })
-    salary: number
+    salary: string;
 
 }

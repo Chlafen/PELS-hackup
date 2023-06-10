@@ -1,4 +1,4 @@
-import {Column} from "typeorm";
+import {Column, PrimaryGeneratedColumn} from "typeorm";
 enum Skill {
     cuisine = 'cuisine',
     francais = 'francais',
@@ -6,56 +6,59 @@ enum Skill {
     informatique = 'informatique',
 }
 export class CreateUserDto {
-    @Column({
-        length:50,
-        nullable:false
-    })
-    name:string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column({
-        length:50,
-        nullable:false
+        length: 50,
+        nullable: false
     })
-    familyName:string;
+    name: string;
 
     @Column({
-        length:8,
-        nullable:false
+        length: 50,
+        nullable: false
     })
-    phoneNumber: number;
+    familyName: string;
 
     @Column({
-        nullable:false
+        length: 8,
+        nullable: false
     })
-    address:string;
+    phoneNumber: string;
 
     @Column({
-        length:8,
-        nullable:false
+        nullable: false
     })
-    password:string;
+    address: string;
+
+    @Column({
+        length: 8,
+        nullable: false
+    })
+    password: string;
 
     @Column()
-    salt:string;
+    salt: string;
 
     @Column({
-        length:50
+        length: 50
     })
-    profession:string;
+    profession: string;
 
     @Column({
-        length:50
+        length: 50
     })
-    workLocation:string;
+    workLocation: string;
 
     @Column({
         type: 'enum',
         enum: Skill,
-        array: true,
     })
-    skills: Skill[];
+    skill: Skill;
 
-    @Column({length:50,        nullable:false
+    @Column({
+        length: 50, nullable: false
     })
-    salary:number
+    salary: string;
 }
