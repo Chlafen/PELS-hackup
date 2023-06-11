@@ -4,7 +4,7 @@ import Footer from './Footer'
 
 export default function Layout({ children }) {
   return (
-    <div>
+    <div className='bg-transparent'>
         <Header/>
         <main>{children}</main>
         <Footer/>

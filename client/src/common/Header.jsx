@@ -16,13 +16,14 @@ import { useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 
 
-const pages = ['Legal', 'Growth', 'Report'];
+const pages = ['قوانين العمل', 'طور من نفسك', 'التبليغ عن اعتداء', 'البحث عن شغل'];
+const mappages = ['legal', 'growth', 'report', 'jobs'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
 
   React.useEffect(() => {
       const token = localStorage.getItem('user');
@@ -41,7 +42,8 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = (event) => {
-    navigate('/' + event.target.innerText.toLowerCase());
+    const route = mappages[pages.indexOf(event.target.innerText)];
+    navigate('/' + route);
     setAnchorElNav(null);
   };
 
@@ -51,10 +53,10 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" className='px-40 bg-red-600 ' style={{backgroundColor:'#b91c1c'}}>
+      <Container maxWidth="xl bg-white" className='w-2/5 rounded-br-3xl rounded-bl-3xl text-black'>
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex', color:'black' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -70,7 +72,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            PELS
+            JOBMANIA
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -104,7 +106,7 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center" className='text-black' >{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -130,13 +132,19 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+              <>
               <Button
-                key={page}
+                key={page} style={{fontSize:'1.5rem'}}
+                className='hover:text-red-600'
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 {page}
               </Button>
+              {/* vertical separator */}
+              <div className=' self-center mx-5 border-r-2 border-gray-400 h-10'></div>
+
+              </>
             ))}
           </Box>
 
