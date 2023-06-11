@@ -20,6 +20,8 @@
 @rjabri17
 
 @Chlafen
+
+OmarKouki
 ***
 ### Running Locally
 #### Prerequisites
